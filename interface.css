@@ -1,1 +1,16 @@
+a { 
+	text-decoration: none;
+	color: #000000;
+}
 
+.button {
+    display: inline-block;
+    height:50px;
+    width:100px;
+    line-height: 50px;
+    text-align: center;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 10px;
+}
