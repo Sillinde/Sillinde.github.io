@@ -64,3 +64,8 @@ $(document).ready(function() {
 	});
 
 });
+
+// the actual game loop here.  Everything that happens "per tick" goes in here.
+window.setInterval(function(){
+
+}, 1000);
