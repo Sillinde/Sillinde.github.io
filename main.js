@@ -60,7 +60,7 @@ $(document).ready(function() {
 	
 	// STATICS - THESE ARE THE FACTS, JACK!
 	
-	var DEBUG = 1; // 1 = true, 0 = false. disable before pushing live!
+	var DEBUG = 0; // 1 = true, 0 = false. disable before pushing live!
 	
 	// millisecond counter. the loop refreshes every 10ms
 	// we have things that should be done immediately, so 10ms is fast enough
@@ -226,7 +226,7 @@ $(document).ready(function() {
 			// it's been 1 second! let's do stuff...
 			
 			// update the auto-incremented stuff
-			resources["food"] += 1;
+			// resources["food"] += 1;  // commented that out for live.
 			
 			// update saveTime by 1
 			// when it hits [whatever], auto-save the game data
