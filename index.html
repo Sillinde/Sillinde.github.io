@@ -1,18 +1,19 @@
-<html>
+<!DOCTYPE html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="interface.css" />
 	</head>
 	<body>
-		<button onclick="foodClick(1)">Gather Food</button>
-		<button onclick="woodClick(1)">Gather Wood</button>
-		<button onclick="stoneClick(0.1)">Gather Stone</button>
+		<a href="#" class="button" id="foodBtn">Gather Food</a>
+		<a href="#" class="button" id="woodBtn">Gather Wood</a>
+		<a href="#" class="button" id="stoneBtn">Gather Stone</a>
 		<br />
-		Food: <span id="food">0</span>
+		Food: <span id="foodCount">0</span>
 		<br />
-		Wood: <span id="wood">0</span>
+		Wood: <span id="woodCount">0</span>
 		<br />
-		Stone: <span id="stone">0</span>
+		Stone: <span id="stoneCount">0</span>
 		<br />
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src="main.js"></script>
 	</body>
 </html>
