@@ -33,7 +33,7 @@ $(document).ready(function() {
 	}
 
 	function stupidDecimal(number) {
-		var output = Math.round(window.number * 1000000)/1000000;
+		var output = Math.round(number * 1000000)/1000000;
 		return output;
 	}
 
@@ -199,7 +199,6 @@ $(document).ready(function() {
 	
 		// show the delete save button
 		$("#deleteSaveBtn").css("visibility", "visible");
-	
 	}
 	
 	
@@ -247,6 +246,7 @@ $(document).ready(function() {
 			
 		} else { millisecondsElapsed += 10; };
 		
-	}, 10); // game loop is in ms, 1000 = 1 second, or 100ms*100 ~_~_~* the more you knoooooow
+	}, 10); // game loop is in ms, 1000 = 1 second, or 10ms * 100 
+		// our game technically is running at 100fps :P ~_~_~* the more you knoooooow
 
 });
