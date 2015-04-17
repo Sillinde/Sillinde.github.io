@@ -1,7 +1,7 @@
 
 function stupidDecimal(number) {
-    //var output = Math.round(number * 1000000)/1000000;
-	return number;
+    var output = Math.round(number * 1000000)/1000000;
+	return output;
 }
 
 function saveData(data) {
