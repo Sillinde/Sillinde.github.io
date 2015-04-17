@@ -1,5 +1,6 @@
 // should we declare globals here? seems there's some serious scope issues going on...
-var progressTier, resources;
+var progressTier = "";
+var resources = {};
 
 $(document).ready(function() {
 	
@@ -23,16 +24,16 @@ $(document).ready(function() {
 		var data = {};
 		data["progressTier"] = progressTier;
 		data["resources"] = resources;
+		//console.log("new game data: " + JSON.stringify(data["resources"]));
 		saveData(data);
 	}
 	
 	function deleteSave() {
-		localStorage.removeItem("progressTier");
-		localStorage.removeItem("resources");
+		localStorage.clear();
 	}
 
 	function stupidDecimal(number) {
-		var output = Math.round(number * 1000000)/1000000;
+		var output = Math.round(window.number * 1000000)/1000000;
 		return output;
 	}
 
@@ -55,7 +56,7 @@ $(document).ready(function() {
 	// VARIABLES! YAAAAAY! //
 	//                     //
 	// / / / / / / / / / / //
-	
+
 	
 	// STATICS - THESE ARE THE FACTS, JACK!
 	
@@ -98,7 +99,7 @@ $(document).ready(function() {
 
 		var data = loadData();
 		progressTier = data["progressTier"];
-		resources    = data["resources"];
+		resources = data["resources"];
 	}
 	
 	
@@ -189,6 +190,7 @@ $(document).ready(function() {
 		deleteSave();
 		createNewGame();
 		saveTimer = 1;
+		millisecondsElapsed = 0;
 	});
 	
 	
@@ -234,6 +236,7 @@ $(document).ready(function() {
 				data["progressTier"] = progressTier;
 				data["resources"] = resources;
 				saveData(data);
+				
 				// we've saved, so reset saveTimer
 				saveTimer = 1;
 			} else { saveTimer += 1 };
@@ -244,6 +247,6 @@ $(document).ready(function() {
 			
 		} else { millisecondsElapsed += 10; };
 		
-	}, 10); // game loop is in ms, 1000 = 1 second, or 10ms*100 ~_~_~* the more you knoooooow
+	}, 10); // game loop is in ms, 1000 = 1 second, or 100ms*100 ~_~_~* the more you knoooooow
 
 });
