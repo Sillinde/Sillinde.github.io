@@ -1,22 +1,54 @@
-
-function stupidDecimal(number) {
-    var output = Math.round(number * 1000000)/1000000;
-	return output;
-}
-
-function saveData(data) {
-	localStorage.setItem("progressTier", JSON.stringify(data["progressTier"]));
-	localStorage.setItem("resources", JSON.stringify(data["resources"]));
-}
-
-function loadData() {
-	var data = {};
-	data["progressTier"] = JSON.parse(localStorage.getItem("progressTier"));
-	data["resources"] = JSON.parse(localStorage.getItem("resources"));
-	return data;
-}
+// should we declare globals here? seems there's some serious scope issues going on...
+var progressTier, resources;
 
 $(document).ready(function() {
+	
+	// / / / / / / / / / / / / / / / //
+	//                               //
+	// FUNCTIONS! THEY'RE GRRRRREAT! //
+	//                               //
+	// / / / / / / / / / / / / / / / //
+	
+	
+	function createNewGame() {
+		// Set up the player with all the variables they will need to begin playing
+		
+		// track and cap the player's progress via tiers
+		progressTier = "tier1";
+
+		// the player's resources
+		resources = {"food": 0, "wood": 0, "stone": 0.0, "houses": 0};
+		
+		// time to save!
+		var data = {};
+		data["progressTier"] = progressTier;
+		data["resources"] = resources;
+		saveData(data);
+	}
+	
+	function deleteSave() {
+		localStorage.removeItem("progressTier");
+		localStorage.removeItem("resources");
+	}
+
+	function stupidDecimal(number) {
+		var output = Math.round(number * 1000000)/1000000;
+		return output;
+	}
+
+	function saveData(data) {
+		localStorage.setItem("progressTier", JSON.stringify(data["progressTier"]));
+		localStorage.setItem("resources", JSON.stringify(data["resources"]));
+	}
+
+	function loadData() {
+		var data = {};
+		data["progressTier"] = JSON.parse(localStorage.getItem("progressTier"));
+		data["resources"] = JSON.parse(localStorage.getItem("resources"));
+		return data;
+	}
+	
+
 
     // / / / / / / / / / / //
 	//                     //
@@ -26,6 +58,8 @@ $(document).ready(function() {
 	
 	
 	// STATICS - THESE ARE THE FACTS, JACK!
+	
+	var DEBUG = 1; // 1 = true, 0 = false. disable before pushing live!
 	
 	// this will be a save timer for the main loop
 	// at 60 seconds, we auto-save the game's data
@@ -44,31 +78,22 @@ $(document).ready(function() {
 	// Check for the existence of saved data.
 	// If the data does not exist, we set default values then create the save data.
 	if (localStorage.getItem("progressTier") === null) {
-		// no save data yet. let's make some!
-		console.log('no save data found');
+		// no save data yet. it's a new game!
 		
-		// track and cap the player's progress via tiers
-		var progressTier = "tier1";
-	
-		// the player's resources
-		var resources = {"food": 0, "wood": 0, "stone": 0.0, "houses": 0};
-		
-		// time to save!
-		var data = {};
-		data["progressTier"] = progressTier;
-		data["resources"] = resources;
-		saveData(data);
+		console.log('creating data for new game...');
+		createNewGame();
+		console.log('new game data created!');
 		
 	} else {
 		// save data exists - let's load it!
 		console.log('save data found');
-				
+
 		var data = loadData();
-		var progressTier = data["progressTier"];
-		var resources    = data["resources"];
+		progressTier = data["progressTier"];
+		resources    = data["resources"];
 	}
-		
-	 
+	
+	
 	
 	
 	// / / / / / / / / / / / / / / / / / //
@@ -113,6 +138,14 @@ $(document).ready(function() {
 		$(this).css("color", "black");
 	});
 	
+	$("#deleteSaveBtn").hover(function() {
+		$(this).css("background-color", "red");
+		$(this).css("color", "white");
+	}, function() {
+		$(this).css("background-color", "white");
+		$(this).css("color", "black");
+	});
+	
 	
 	// INTERACTIVITY
 	
@@ -143,7 +176,23 @@ $(document).ready(function() {
 		};
 	});
 	
-
+	$("#deleteSaveBtn").click(function() {
+		console.log('delete button pressed...');
+		deleteSave();
+		createNewGame();
+		saveTimer = 1;
+	});
+	
+	
+	// DEBUGGING STUFF
+	if (DEBUG === 1) {
+	
+		// show the delete save button
+		$("#deleteSaveBtn").css("visibility", "visible");
+	
+	}
+	
+	
 	
 	// / / / / / / / / / / / / / / //
 	//                             //
@@ -169,7 +218,7 @@ $(document).ready(function() {
 		// update saveTime by 1
 		// when it hits 60, auto-save the game data
 		if (saveTimer === 5) {
-			data = {};
+			var data = {};
 			data["progressTier"] = progressTier;
 			data["resources"] = resources;
 			saveData(data);
