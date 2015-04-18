@@ -77,9 +77,10 @@ $(document).ready(function() {
 	// create default values for resource gains per click
 	var gains = {"food": 1, "wood": 1, "stone": 0.1};
 	
-	// max number of buildings allowed per progress tier
-	var buildingTiers = {"tier1": 25, "tier2": 50, "tier3": 75, "tier4": 100, "tier5": 125,
-						 "tier6": 150, "tier7": 175, "tier8": 200, "tier9": 225};
+	// max number of buildings allowed per progress tier (equals (tiernumber + 4) ^ 2)
+	var buildingTiers = {"tier1": 25, "tier2": 36, "tier3": 49, "tier4": 64, "tier5": 81,
+						 "tier6": 100, "tier7": 121, "tier8": 144, "tier9": 169,
+						 "tier10": 196, "tier11": 225};
 	
 	
 	// DYNAMICS - THE STUFF THAT CHANGES AND GETS SAVED/LOADED
