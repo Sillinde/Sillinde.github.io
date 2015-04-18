@@ -60,7 +60,7 @@ $(document).ready(function() {
 	
 	// STATICS - THESE ARE THE FACTS, JACK!
 	
-	var DEBUG = 0; // 1 = true, 0 = false. disable before pushing live!
+	var DEBUG = 1; // 1 = true, 0 = false. disable before pushing live!
 	
 	// millisecond counter. the loop refreshes every 10ms
 	// we have things that should be done immediately, so 10ms is fast enough
