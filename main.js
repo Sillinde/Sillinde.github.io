@@ -33,7 +33,7 @@ $(document).ready(function() {
 	}
 
 	function stupidDecimal(number) {
-		var output = Math.round(number * 10000)/10000;
+		var output = Math.floor(number * 10000)/10000;
 		return output;
 	}
 
